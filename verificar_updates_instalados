@@ -1,0 +1,5 @@
+# Validar quais os updates instalados nas workstations, pode ser executado como .ps1 via intune ou por GPO
+
+get-wmiobject -class win32_quickfixengineering > {insita o caminho que deseja salvar aqui} $env:computername-$env:username.txt
+
+# get-wmiobject -class win32_quickfixengineering irá trazer todos os updates instalados na maquina
