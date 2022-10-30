@@ -1,4 +1,4 @@
-# Script para rodar em todas as maquinas da companhia seja por intune ou AD On-Primises.
+# Validar quais usuários de rede compoe o grupo de administradores locais nas workstations, pode ser executado como .ps1 via intune ou por GPO
 
 net localgroup administradores > {coloque caminho que deseja salvar}$env:computername-$env:username.txt
 
