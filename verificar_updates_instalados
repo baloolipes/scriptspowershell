@@ -3,3 +3,6 @@
 get-wmiobject -class win32_quickfixengineering > {insita o caminho que deseja salvar aqui} $env:computername-$env:username.txt
 
 # get-wmiobject -class win32_quickfixengineering irá trazer todos os updates instalados na maquina
+
+# o simbolo > é para indicar que a saida do comando devera criar ou adicionar informações no caminho indicado
+# $env:computername-$env:username.txt indica que as variaveis nome do computador e o usuário logado deverá compor o nome do arquivo txt
