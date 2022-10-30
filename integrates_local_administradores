@@ -1,0 +1,9 @@
+# Script para rodar em todas as maquinas da companhia seja por intune ou AD On-Primises.
+
+net localgroup administradores > {coloque caminho que deseja salvar}$env:computername-$env:username.txt
+
+# net localgrup administradores = comando que irá ler o grupo de administradores e irá trazer a saida dos usuário que estão relacionados.
+#obs: caso o Windows esteja em ingles troque administradores por administrator.
+
+# o simbolo > é para indicar que a saida do comando devera criar ou adicionar informações no caminho indicado
+# $env:computername-$env:username.txt indica que as variaveis nome do computador e o usuário logado deverá compor o nome do arquivo txt
