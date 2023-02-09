@@ -1,0 +1,9 @@
+# variavel Criar 
+$password = ConvertTo-SecureString "insira a senha" -AsPlainText -Forc
+
+#criar variavel e criar usuário
+$passwordCliente = ConvertTo-SecureString "*insira a senha" -AsPlainText -Force New-LocalUser -Name "user" -Password $password -FullName "nome completo"
+
+#adicionar usuário criado no grupo
+Add-LocalGroupMember -Group Administradores -Member <usuário> New-LocalUser -Name "usuário" -Password $passwordCliente -FullName "nome completo"
+Add-LocalGroupMember -Group Administradores -Member <usuário>
