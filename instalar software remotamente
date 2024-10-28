@@ -1,0 +1,30 @@
+# Verifica se o script está sendo executado como administrador
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    # Relança o script como administrador
+    Write-Output "O script precisa ser executado com privilegios de administrador. Solicitando elevacao..."
+    Start-Process powershell -ArgumentList ("-File `"" + $PSCommandPath + "`"") -Verb RunAs
+    exit
+}
+
+# Define o URL de download e o caminho temporario para salvar o instalador
+$nomeinstalador = "URL"
+$installerPath = "$env:tmp\nome instalador"
+
+# Faz o download do instalador
+Write-Output "Baixando o instalador..."
+Invoke-WebRequest -Uri $nome instalador -OutFile $installerPath
+
+# Instala o Wazuh Agent de forma silenciosa, especificando o servidor e o grupo
+Write-Output "Instalando o software..."
+msiexec.exe /i $installerPath /q WAZUH_MANAGER='db1-siem.db1.com.br' WAZUH_AGENT_GROUP='holding'
+
+# Inicia o servico do software
+Write-Output "Iniciando o servico software..."
+Start-Service -Name "nome do servico"
+
+# Confirma que o servico foi iniciado
+if ((Get-Service -Name "servico").Status -eq 'Running') {
+    Write-Output "O software foi instalado e iniciado com sucesso."
+} else {
+    Write-Output "Houve um problema ao iniciar o servico software."
+}
