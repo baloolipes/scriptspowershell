@@ -1,0 +1,11 @@
+PS C:\Users\mateus.lopes> $SafeSenders = @("endereço")
+>> Get-Mailbox -ResultSize Unlimited | ForEach-Object {
+>>     $User = $_.PrimarySmtpAddress
+>>     try {
+>>         Set-MailboxJunkEmailConfiguration -Identity $User -TrustedSendersAndDomains $SafeSenders
+>>         Write-Output "Remetentes confiáveis aplicados ao usuário: $User"
+>>     } catch {
+>>         Write-Output "Erro ao aplicar ao usuário: $User"
+>>         Write-Output $_.Exception.Message
+>>     }
+>> }
